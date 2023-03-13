@@ -1,0 +1,34 @@
+h3, h4 {
+    color: #292929;
+}
+.food-info{
+    color: #292929;
+}
+.part1, .part2, .part3{
+    color:#5F5F5F;
+}
+.acikgri{
+    color:#5F5F5F;
+}
+.total{
+    color: #CE2829;
+}
+.food-content{
+    margin: 0 auto;
+    width: 40%;
+}
+.preferences {
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-start;
+}
+.part1{
+    margin-right: 15rem;
+}
+.preferences, .part3, .note, .summary, .total-price{
+    padding: 3rem 0;
+}
+.reverse-rows{
+    display: flex;
+    flex-direction: row;
+}

@@ -1,0 +1,10 @@
+.main-container{
+    background-color: #FAF7F2;
+    display:inline-block;
+    flex-direction: column;
+    align-items: center;
+}
+.order-form{
+    align-items: center;
+    text-align:left;
+}

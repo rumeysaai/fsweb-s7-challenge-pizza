@@ -1,0 +1,13 @@
+header{
+    background-color: #CE2829;
+    text-align: center;
+    height: 15vh;
+    color:white;
+}
+h1{
+    padding-top: 5%;
+    font-family:  "Londrina Solid";
+}
+.main-content{
+    width:100%;
+}

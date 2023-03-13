@@ -1,10 +1,12 @@
 import React from "react";
+import Layout from "./layout/Layout";
 
 const App = () => {
   return (
     <>
-      <h1>Teknolojik Yemekler</h1>
-      <p>Burdaki kodu silip kendi headerınızı ekleyebilirsiniz</p>
+    <Layout />
+      {/* <h1>Teknolojik Yemekler</h1>
+      <p>Burdaki kodu silip kendi headerınızı ekleyebilirsiniz</p> */}
     </>
   );
 };

@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+@font-face {
+  font-family: "Barlow";
+  src: url("https://fonts.google.com/specimen/Barlow");
+}
+@font-face {
+  font-family: "Quattrocento";
+  src: url("https://fonts.google.com/specimen/Quattrocento");
+}
+@font-face {
+  font-family: "Satisfy";
+  src: url("https://fonts.google.com/specimen/Satisfy");
+}
+
