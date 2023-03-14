@@ -35,19 +35,19 @@ const Order = ({ siparisSonucu }) => {
     const [disabledButton, setDisabledButton] = useState(true);
 
     const extras = [
-        "Pepperoni",
-        "Sosis",
-        "Kanada Jambonu",
-        "Tavuk Izgara",
-        "Soğan",
-        "Domates",
-        "Mısır",
-        "Jalepeno",
-        "Sarımsak",
-        "Biber",
-        "Sucuk",
-        "Ananas",
-        "Kabak"
+        "Pepperoni ",
+        "Sosis ",
+        "Kanada Jambonu ",
+        "Tavuk Izgara ",
+        "Soğan ",
+        "Domates ",
+        "Mısır ",
+        "Jalepeno ",
+        "Sarımsak ",
+        "Biber ",
+        "Sucuk ",
+        "Ananas ",
+        "Kabak "
     ]
     const [order, setOrder] = useState({
         name: "Pesto Pizza",
@@ -91,8 +91,7 @@ const Order = ({ siparisSonucu }) => {
                 if (checke) {
                     console.log(" ******* yakaladı")
                     setOrder({ ...order, extraStuff: [...order.extraStuff, e.target.name] })
-                    setTotalPrice(((order.price) + ((order.extraStuff.length) * 5)) * orderCounter);
-                    setExtraPrice(((order.extraStuff.length) * 5) * orderCounter);
+                    
                 }
             })
             .catch(err => {
@@ -102,9 +101,12 @@ const Order = ({ siparisSonucu }) => {
 
         if (!checke) {
             const ind = order.extraStuff.indexOf(e.target.name)
+            const extraStuf = order.extraStuff;
+            extraStuf.splice(ind,1)
+
             setOrder({
                 ...order, extraStuff:
-                    order.extraStuff.splice(ind, 1)
+                    extraStuf
             })
             setTotalPrice(((order.price) + ((order.extraStuff.length) * 5)) * orderCounter);
             setExtraPrice(((order.extraStuff.length) * 5) * orderCounter);
@@ -137,12 +139,19 @@ const Order = ({ siparisSonucu }) => {
 
     useEffect(() => {
         orderSchema.isValid(order)
-            .then((valid) => setDisabledButton(!valid));
+            .then((valid) => {
+                setDisabledButton(!valid)
+                setTotalPrice(((order.price) + ((order.extraStuff.length) * 5)) * orderCounter);
+                    setExtraPrice(((order.extraStuff.length) * 5) * orderCounter);
+            });
         console.log(order)
     }, [order, extraPrice, totalPrice, errors]);
 
     return (
         <div className="food-content">
+            <div className="head-img">
+            <img src="./esnek-form-banner.png" alt="banner" />
+            </div>
             <nav className="nav-menu">
                 <NavLink to="/"
                     style={({ isActive }) => (isActive ? activeStyling : null)}

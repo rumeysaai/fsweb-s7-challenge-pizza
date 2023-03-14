@@ -1,0 +1,44 @@
+.main-cont{
+    background-color: #CE2829;
+}
+.texts span{
+    font-family: "Satisfy";
+    font-size: 1.5rem;
+    color: #FDC913;
+}
+.texts{
+    font-family: "Barlow";
+    font-size: 4rem;
+    margin: 0 auto;
+    text-align: center;
+    color:#FAF7F2;
+}
+hr{
+    color:#FAF7F2;
+}
+.order-content, .total-summary, .secim-summary{
+    color:#FAF7F2;
+}
+.order-detailss{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    margin:0 auto;
+    height: 69vh;
+    padding-top: 5rem;
+}
+.headerr{
+    text-align: center;
+    margin: 2rem auto 3rem auto;
+}
+.secim-summary, .total-summary{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.total-price{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top:7rem;
+}
