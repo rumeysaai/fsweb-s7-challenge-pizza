@@ -1,10 +1,19 @@
 import React from "react";
+import './ConfirmationPage.css';
 
-const ConfirmationPage = () => {
+const ConfirmationPage = ({ order }) => {
+    
     return(
-        <div>
+        <div className="main-cont">
+            <div className="texts">
             <p>TEBRİKLER!</p>
             <p>PİZZANIZ YOLA ÇIKTI!</p>
+            </div>
+            <div className="order-details">
+                <p>{order.name}</p>
+                <p>{order.count}</p>
+                <p>{order.crust}</p>
+            </div>
         </div>
     )
 }

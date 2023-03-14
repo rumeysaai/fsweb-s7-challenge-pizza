@@ -32,3 +32,12 @@ h3, h4 {
     display: flex;
     flex-direction: row;
 }
+.nav-menu {
+    display:flex;
+    align-content: space-around;
+ }
+ .nav-menu > a{
+    text-decoration: none;
+    color: #CE2829;
+    padding: .5rem .5rem;
+ }
