@@ -5,14 +5,16 @@ import * as Yup from "yup";
 import { Form, FormGroup, Input, Label, DropdownItem, DropdownToggle, DropdownMenu, UncontrolledDropdown, Button, ButtonGroup, ButtonToolbar, CardBody, CardTitle, CardText, FormFeedback } from "reactstrap";
 import './Order.css';
 
-const activeStyling = {
-    textDecoration: "none",
-};
-
-const Order = ({ siparisSonucu }) => {
+const Order = ({ updateOrder }) => {
     const navigate = useNavigate();
 
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState({
+        size: "",
+        crust: "",
+        extraStuff: [],
+        note: "",
+        count: 1
+    });
 
     const orderSchema = Yup.object().shape({
         size: Yup
@@ -59,6 +61,8 @@ const Order = ({ siparisSonucu }) => {
         count: 1,
         rate: 8.9,
         comments: 256,
+        totalPrice:"",
+        extraPrice:"",
         description: "Pizza margherita, as the Italians call it, is a simple pizza hailing from Naples. When done right, margherita pizza features a bubbly crust, crushed San Marzano tomato sauce, fresh mozzarella and basil, a drizzle of olive oil, and a sprinkle of salt. "
     });
 
@@ -91,25 +95,20 @@ const Order = ({ siparisSonucu }) => {
                 if (checke) {
                     console.log(" ******* yakaladı")
                     setOrder({ ...order, extraStuff: [...order.extraStuff, e.target.name] })
-                    
                 }
             })
             .catch(err => {
-                setErrors({ ...errors, [e.target.name]: "" })
                 console.log(" ***** extraStuff ERR: > ", err)
+                setErrors({ ...errors, [e.target.name]: err.errors[0] })
             });
 
         if (!checke) {
+
             const ind = order.extraStuff.indexOf(e.target.name)
             const extraStuf = order.extraStuff;
-            extraStuf.splice(ind,1)
+            extraStuf.splice(ind, 1)
 
-            setOrder({
-                ...order, extraStuff:
-                    extraStuf
-            })
-            setTotalPrice(((order.price) + ((order.extraStuff.length) * 5)) * orderCounter);
-            setExtraPrice(((order.extraStuff.length) * 5) * orderCounter);
+            setOrder({...order, extraStuff: extraStuf})
         }
     }
 
@@ -129,7 +128,7 @@ const Order = ({ siparisSonucu }) => {
     const submitHandler = (e) => {
         e.preventDefault();
         navigate("/confirmation");
-        siparisSonucu(order);
+        updateOrder(order);
         axios.post("https://reqres.in/api/orders", order)
             .then((res) => {
                 console.log("reqres aşağıdaki");
@@ -142,35 +141,23 @@ const Order = ({ siparisSonucu }) => {
             .then((valid) => {
                 setDisabledButton(!valid)
                 setTotalPrice(((order.price) + ((order.extraStuff.length) * 5)) * orderCounter);
-                    setExtraPrice(((order.extraStuff.length) * 5) * orderCounter);
+                setExtraPrice(((order.extraStuff.length) * 5) * orderCounter);
             });
         console.log(order)
-    }, [order, extraPrice, totalPrice, errors]);
+    }, [order, extraPrice, totalPrice, errors, orderCounter]);
 
     return (
         <div className="food-content">
-            <div className="head-img">
-            <img src="./esnek-form-banner.png" alt="banner" />
-            </div>
-            <nav className="nav-menu">
-                <NavLink to="/"
-                    style={({ isActive }) => (isActive ? activeStyling : null)}
-                >Anasayfa</NavLink>
-                <NavLink to="/"
-                    style={({ isActive }) => (isActive ? activeStyling : null)}
-                >Seçenekler</NavLink>
-                <NavLink to="/pizza"
-                    style={({ isActive }) => (isActive ? activeStyling : null)}
-                >Sipariş Oluştur</NavLink>
-            </nav>
-            <div className="food-info">
-                <h3>{order.name}</h3>
-                <div className="reverse-rows">
-                    <b >{order.price}₺</b>
-                    <p className="acikgri">{order.rate}</p>
-                    <p className="acikgri">({order.comments})</p>
+            <div className="absolut">
+                <div className="food-info">
+                    <h3>{order.name}</h3>
+                    <div className="reverse-rows">
+                        <b >{order.price}₺</b>
+                        <p className="acikgri">{order.rate}</p>
+                        <p className="acikgri">({order.comments})</p>
+                    </div>
+                    <p className="acikgri">{order.description}</p>
                 </div>
-                <p className="acikgri">{order.description}</p>
             </div>
             <Form onSubmit={submitHandler}>
                 <div className="preferences">
@@ -184,6 +171,7 @@ const Order = ({ siparisSonucu }) => {
                                 type="radio"
                                 onChange={changeHandler}
                                 value={"Küçük"}
+                                data-cy="crust-small"
                             />
                             {' '}
                             <Label check>
@@ -197,6 +185,7 @@ const Order = ({ siparisSonucu }) => {
                                 type="radio"
                                 onChange={changeHandler}
                                 value={"Orta"}
+                                data-cy="crust-medium"
                             />
                             {' '}
                             <Label check>
@@ -210,6 +199,7 @@ const Order = ({ siparisSonucu }) => {
                                 type="radio"
                                 onChange={changeHandler}
                                 value={"Büyük"}
+                                data-cy="crust-large"
                             />
                             {' '}
                             <Label check>
@@ -227,14 +217,16 @@ const Order = ({ siparisSonucu }) => {
                             >
                                 Hamur Kalınlığı
                             </DropdownToggle>
-                            <DropdownMenu light>
+                            <DropdownMenu className="crust"light>
                                 <DropdownItem
+                                className="crust-normal"
                                     type="select"
                                     id="crust"
                                     name="crust"
                                     value="Normal"
                                     onClick={changeHandler}
                                     invalid={errors.crust}
+                                    data-cy="crust-normal"
                                 >
                                     Normal
                                 </DropdownItem>
@@ -245,6 +237,7 @@ const Order = ({ siparisSonucu }) => {
                                     value="İnce"
                                     onClick={changeHandler}
                                     invalid={errors.crust}
+                                    data-cy="crust-ince"
                                 >
                                     İnce
                                 </DropdownItem>
@@ -268,6 +261,7 @@ const Order = ({ siparisSonucu }) => {
                                 id={`custom-checkbox-${e.i}`}
                                 onChange={checkChangeHandler}
                                 checked={order.extraStuff.indexOf(e) > -1}
+                                
                             />
                             {' '}
                             <Label check>
@@ -296,7 +290,6 @@ const Order = ({ siparisSonucu }) => {
                 </div>
                 <div className="summary">
                     <div className="counter">
-
                         <ButtonToolbar>
                             <ButtonGroup className="me-2">
                                 <Button
@@ -321,15 +314,15 @@ const Order = ({ siparisSonucu }) => {
                     <div className="total-price">
                         <CardBody>
                             <CardTitle tag="h5">
-                                <h4>Sipariş Toplamı</h4>
+                                <h4 className="toplam-header">Sipariş Toplamı</h4>
                             </CardTitle>
-                            <CardText className="secim acikgri">
+                            <CardText className="secim-summary">
                                 <h6 >Seçimler</h6>
-                                <h6>{extraPrice}₺</h6>
+                                <h6>{order.extraPrice=extraPrice} ₺</h6>
                             </CardText>
-                            <CardText className="total">
+                            <CardText className="total-summary">
                                 <h6>Toplam</h6>
-                                <h6>{totalPrice}₺</h6>
+                                <h6>{order.totalPrice=totalPrice} ₺</h6>
                             </CardText>
                             <Button disabled={disabledButton} type="submit" color="warning" >
                                 SİPARİŞ VER

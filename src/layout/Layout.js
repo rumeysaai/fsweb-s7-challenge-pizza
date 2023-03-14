@@ -1,26 +1,26 @@
 import React, { useState } from "react";
 import { Route, Routes } from 'react-router-dom';
 import HomePage from "../views/HomePage";
-import Order from "../components/Order"
+import OrderPage from "../views/OrderPage";
 import ConfirmationPage from "../views/ConfirmationPage";
 import "./Layout.css"
 
 const Layout = () => {
     const [siparis, setSiparis] = useState({});
 
-    const siparisSonucu = (e) => {
+    const updateOrder = (e) => {
         setSiparis(e);
         console.log(siparis);
     }
     return (
         <div className="main-content">
-            <header>
+            {/* <header>
                 <h1>Teknolojik Yemekler</h1>
-            </header>
+            </header> */}
             <div className="page-content">
                 <Routes>
                     <Route path="/" element={<HomePage />} />
-                    <Route path="/pizza" element={<Order siparisSonucu={siparisSonucu} />} />
+                    <Route path="/pizza" element={<OrderPage updateOrder={updateOrder} />} />
                     <Route path="/confirmation" element={<ConfirmationPage order={siparis} />} />
                 </Routes>
             </div>

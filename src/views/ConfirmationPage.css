@@ -16,7 +16,7 @@
 hr{
     color:#FAF7F2;
 }
-.order-content, .total-summary, .secim-summary{
+.order-content, .total-summarys, .secim-summarys{
     color:#FAF7F2;
 }
 .order-detailss{
@@ -31,14 +31,27 @@ hr{
     text-align: center;
     margin: 2rem auto 3rem auto;
 }
-.secim-summary, .total-summary{
+.secim-summarys, .total-summarys{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-top: 1rem;
 }
-.total-price{
+.total-prices{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-top:7rem;
 }
+.total-summarys{
+    padding-bottom: 1rem;
+}
+.head{
+    height: 5vh;
+    padding: 0 auto;
+    font-family: "Londrina Solid";
+    text-align: center;
+    background-color: #CE2829;
+    color:#FAF7F2;
+    margin-bottom: 0;
+  }

@@ -1,0 +1,42 @@
+.main-container{
+    display:inline-block;
+    flex-direction: column;
+    align-items: center;
+}
+.order-form{
+    align-items: center;
+    text-align:left;
+}
+.nav-menu {
+    display:flex;
+    align-content: space-around;
+    float: left;
+ }
+ .nav-menu > a{
+    text-decoration: none;
+    color: #5F5F5F;
+    padding: 1rem 2rem;
+ }
+ .nav-menu > a:hover{
+    text-decoration: none;
+    color: #CE2829;
+ }
+ .beige-rectangle{
+    display: flex;
+    flex-direction: column;
+    background-color: #FAF7F2;
+    align-content: center;
+ }
+ .nav-menu, .head-img{
+    margin: 0 auto;
+ }
+ .head{
+   height: 5vh;
+   padding: 0 auto;
+   font-family: "Londrina Solid";
+   text-align: center;
+   background-color: #CE2829;
+   color:#FAF7F2;
+   margin-bottom: 0;
+ }
+ 

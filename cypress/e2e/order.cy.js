@@ -23,12 +23,29 @@ describe('home page test', () => {
     })
 
     it('Pizza hamuru seçiliyor mu?',()=>{
-        cy.get('[type="select"]').select('crust').should('have.value', 'Normal')
+        cy.get('.crust .crust-normal').click()
     })
 
-    it('ekstra malzemelerden en fazla 10 adet seçiliyor mu?', ()=>{
+    it('Ekstra malzemelerden en fazla 10 adet seçiliyor mu?', ()=>{
       cy.get('[type="checkbox"]').check();
     })
-    
+
+    it('Not ekleniyor mu?', () => {
+      cy.get('[type="text"]').type("123")
+    })
+  })
+
+  describe('Form submit oluyor mu?', ()=>{
+    beforeEach(() => {
+      cy.visit("http://localhost:3000/pizza");
+    });
+    it('Form öğeleri dolunca buton aktif oluyor mu?', ()=>{
+
+      cy.get('[type="radio"]').first().check();
+      cy.get('.crust .crust-normal').click();
+      cy.get('[type="checkbox"]').check();
+      cy.get('[type="text"]').type("123");
+      cy.get('[data-cy="formSubmit"]').submit();
+    })
   })
   

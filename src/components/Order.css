@@ -25,22 +25,37 @@ h3, h4 {
 .part1{
     margin-right: 15rem;
 }
-.preferences, .part3, .note, .summary, .total-price{
+.preferences, .part3, .note, .summary{
     padding: 3rem 0;
 }
 .reverse-rows{
     display: flex;
     flex-direction: row;
 }
-.nav-menu {
-    display:flex;
-    align-content: space-around;
+.secim-summary, .total-summary{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
  }
- .nav-menu > a{
-    text-decoration: none;
-    color: #CE2829;
-    padding: .5rem .5rem;
+ .total-price{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 0 0 5rem;
+    width: 65%;
  }
- .head-img{
-    padding-bottom: 5rem;
+ .total-summary h6{
+    color:#CE2829;
+    padding-bottom: 1rem;
  }
+ .secim-summary h6{
+    padding-top: 2rem;
+    color:#292929;
+ }
+ .summary {
+    display: flex;
+    flex-direction: row;
+ }
+.counter {
+    width: 30%;
+}
