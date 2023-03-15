@@ -2,19 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as Yup from "yup";
+import { extras, foods } from '../utils/ingredients'
 import { Form, FormGroup, Input, Label, DropdownItem, DropdownToggle, DropdownMenu, UncontrolledDropdown, Button, ButtonGroup, ButtonToolbar, CardBody, CardTitle, CardText, FormFeedback } from "reactstrap";
 import './Order.css';
 
 const Order = ({ updateOrder }) => {
     const navigate = useNavigate();
-
-    const [errors, setErrors] = useState({
-        size: "",
-        crust: "",
-        extraStuff: [],
-        note: "",
-        count: 1
-    });
 
     const orderSchema = Yup.object().shape({
         size: Yup
@@ -34,82 +27,59 @@ const Order = ({ updateOrder }) => {
             .required("You must add at least 1 product")
     })
 
-    const [disabledButton, setDisabledButton] = useState(true);
-
-    const extras = [
-        "Pepperoni ",
-        "Sosis ",
-        "Kanada Jambonu ",
-        "Tavuk Izgara ",
-        "Soğan ",
-        "Domates ",
-        "Mısır ",
-        "Jalepeno ",
-        "Sarımsak ",
-        "Biber ",
-        "Sucuk ",
-        "Ananas ",
-        "Kabak "
-    ]
-    const [order, setOrder] = useState({
-        name: "Pesto Pizza",
-        price: 100,
+    const [order, setOrder] = useState(foods[0]);
+    const [errors, setErrors] = useState({
         size: "",
         crust: "",
         extraStuff: [],
         note: "",
-        count: 1,
-        rate: 8.9,
-        comments: 256,
-        totalPrice: "",
-        extraPrice: "",
-        description: "Pizza margherita, as the Italians call it, is a simple pizza hailing from Naples. When done right, margherita pizza features a bubbly crust, crushed San Marzano tomato sauce, fresh mozzarella and basil, a drizzle of olive oil, and a sprinkle of salt. "
+        count: 1
     });
+    const [disabledButton, setDisabledButton] = useState(true);
     const [extraPrice, setExtraPrice] = useState(0);
-    const [totalPrice, setTotalPrice] = useState(order.price); 
+    const [totalPrice, setTotalPrice] = useState(order.price);
     const [orderCounter, setOrderCounter] = useState(1);  //pizza adet
 
-    const changeHandler = (e) =>{
-        const {type, checked, value, name} = e.target
-        if(type === "checkbox")
-        {
+    const changeHandler = (e) => {
+        const { type, checked, value, name } = e.target
+        if (type === "checkbox") {
             Yup.reach(orderSchema, "extraStuff")
-            .validate([...order.extraStuff, name])
-            .then((valid) => {
-                setErrors({ ...errors, [name]: "" })
-                if (checked) {
-                    console.log(" ******* yakaladı")
-                    setOrder({ ...order, extraStuff: [...order.extraStuff, name] })
-                }
-            })
-            .catch(err => {
-                console.log(" ***** extraStuff ERR: > ", err)
-                setErrors({ ...errors, extraStuff: err.errors[0] })
-            });
+                .validate([...order.extraStuff, name])
+                .then((valid) => {
+                    setErrors({ ...errors, [name]: "" })
+                    if (checked) {
+                        console.log(" ******* yakaladı")
+                        setOrder({ ...order, extraStuff: [...order.extraStuff, name] })
+                    }
+                })
+                .catch(err => {
+                    console.log(" ***** extraStuff ERR: > ", err)
+                    setErrors({ ...errors, extraStuff: err.errors[0] })
+                });
 
-        if (!checked) {
+            if (!checked) {
 
-            const ind = order.extraStuff.indexOf(name)
-            const extraStuf = order.extraStuff;
-            extraStuf.splice(ind, 1)
+                const ind = order.extraStuff.indexOf(name)
+                const extraStuf = order.extraStuff;
+                extraStuf.splice(ind, 1)
 
-            setOrder({ ...order, extraStuff: extraStuf })
+                setOrder({ ...order, extraStuff: extraStuf })
+            }
         }
-        }
-        else{
+        else {
             Yup.reach(orderSchema, name)
-            .validate(value)
-            .then((valid) => {
-                setErrors({ ...errors, [name]: "" });
-                setOrder({ ...order, [name]: value });
-            })
-            .catch((err) => {
-                setErrors({ ...errors, [name]: err.errors[0] })
-            })
+                .validate(value)
+                .then((valid) => {
+                    setErrors({ ...errors, [name]: "" });
+                    setOrder({ ...order, [name]: value });
+                })
+                .catch((err) => {
+                    setErrors({ ...errors, [name]: err.errors[0] })
+                })
         }
     }
 
-    const increaseCounter = (e) => { // pizza adet artışı
+    const increaseCounter = (e) => {  // pizza adet artışı
         console.log(e.target.value)
         setOrderCounter(orderCounter + 1)
 

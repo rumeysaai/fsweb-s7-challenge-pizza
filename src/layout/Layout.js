@@ -9,7 +9,6 @@ const Layout = ({order, updateOrder}) => {
     
     return (
         <div className="main-content">
-    
             <div className="page-content">
                 <Routes>
                     <Route path="/" element={<HomePage />} />

@@ -7,8 +7,8 @@ const App = () => {
 
     const updateOrder = (e) => {
       setOrderP(e);
-        
     }
+    
   return (
     <>
     <Layout order={orderP} updateOrder={updateOrder}/>
