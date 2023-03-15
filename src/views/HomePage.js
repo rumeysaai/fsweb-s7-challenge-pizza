@@ -25,17 +25,27 @@ const HomePage = () => {
             </div>
             <div className="home-container-second">
                 <div className="first-banners">
-                    <div className="banner c1">
-                        <h3>Özel Lezzetus</h3>
-                        <h5>Pesto Pizza</h5>
-                        <Button>Sipariş Ver</Button>
+                    <div className="half-banner1">
+                        <div className="banner c1">
+                            <h2>Özel Lezzetus</h2>
+                            <h5>Pesto Pizza</h5>
+                            <Button>Sipariş Ver</Button>
+                        </div>
                     </div>
-                    <div className="banner c2">
-
+                    <div className="half-banner2">
+                        <div className="banner c2">
+                            <h5>Hackathlon Burger Menü</h5>
+                            <Button>Sipariş Ver</Button>
+                        </div>
+                        <div className="banner c3">
+                            <h5><span>Çooooook</span> hızlı npm gibi kurye</h5>
+                            <Button>Sipariş Ver</Button>
+                        </div>
                     </div>
-                    <div className="banner c3">
-
-                    </div>
+                </div>
+                <div className="second-header">
+                    <span>en çok paketlenen menüler</span>
+                    <h3>Acıktıran Kodlara Doyuran Lezzetler</h3>
                 </div>
                 <div className="second-banners">
                     <div className="second-nav-bar">
@@ -46,9 +56,10 @@ const HomePage = () => {
                         <a href="/"><img src="./esnek/mini-buttons/5.png.svg" /> Fast Food</a>
                         <a href="/"><img src="./esnek/mini-buttons/6.png.svg" /> Gazlı İçecek</a>
                     </div>
+
                     <div className="food-cards">
                         <div className="card1">
-                            
+
                         </div>
                         <div className="card2">
 

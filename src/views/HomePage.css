@@ -9,7 +9,7 @@
     color:hsl(38, 44%, 96%);
     width: 100vw;
     min-height: 80vh;
-    background-image: url("../mvp-banner.png");
+    background-image: url("/mvp-banner.png");
     background-position: bottom center;
     background-size: contain;
     background-repeat: no-repeat;
@@ -18,7 +18,7 @@
     justify-content: space-between;
 }
 
-.home-container-main .text span{
+.home-container-main .text span, .second-header>span{
     font-family: "Satisfy";
     font-size: 1.5rem;
     color: #FDC913;
@@ -56,16 +56,50 @@
     background-color: #FAF7F2;
 }
 .first-banners{
-    width: 100%;
+    width: 80%;
     height: 50vh;
+    display:flex;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    padding: 5rem 0 5rem 0;
 }
 .banner{
-    width: 30%;
-    height: 25vh;
-    border-radius: 8%;
+    border-radius: 10px;
+}
+.half-banner1, .half-banner2{
+    display: flex;
+}
+.half-banner2{
+    flex-direction: column;
+    justify-content: flex-end;
+    align-content: stretch;
 }
 .c1{
     background-color: #CE2829;
-    top: 5rem;
+    background-image: url("/esnek/kart-1.png");
+    background-size: cover;
+    width: 35vw;
+}
+.c2{
+    background-color:#292929;
+    color:#FAF7F2;
+    background-image: url("/esnek/kart-2.png");
+    background-size: cover;
+    width: 35vw;
+    height: 19vh;
+    margin: 0 0 1rem 0;
+}
+.c3{
+    background-image: url("/esnek/kart-3.png");
+    background-size: cover;
+    width: 35vw;
+    height: 19vh;
+    margin: 1rem 0 0 0;
+}
+.second-header {
+    margin: 2rem 0 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
  
