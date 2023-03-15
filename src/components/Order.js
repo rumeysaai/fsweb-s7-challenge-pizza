@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import * as Yup from "yup";
 import { Form, FormGroup, Input, Label, DropdownItem, DropdownToggle, DropdownMenu, UncontrolledDropdown, Button, ButtonGroup, ButtonToolbar, CardBody, CardTitle, CardText, FormFeedback } from "reactstrap";
@@ -69,7 +69,7 @@ const Order = ({ updateOrder }) => {
     const [totalPrice, setTotalPrice] = useState(order.price); 
     const [orderCounter, setOrderCounter] = useState(1);  //pizza adet
 
-    const changeHand = (e) =>{
+    const changeHandler = (e) =>{
         const {type, checked, value, name} = e.target
         if(type === "checkbox")
         {
@@ -165,7 +165,7 @@ const Order = ({ updateOrder }) => {
                                 name="size"
                                 id="size-small"
                                 type="radio"
-                                onChange={changeHand}
+                                onChange={changeHandler}
                                 value={"Küçük"}
                                 data-cy="crust-small"
                             />
@@ -181,7 +181,7 @@ const Order = ({ updateOrder }) => {
                                 name="size"
                                 id="size-medium"
                                 type="radio"
-                                onChange={changeHand}
+                                onChange={changeHandler}
                                 value={"Orta"}
                                 data-cy="crust-medium"
                             />
@@ -196,7 +196,7 @@ const Order = ({ updateOrder }) => {
                                 name="size"
                                 id="size-large"
                                 type="radio"
-                                onChange={changeHand}
+                                onChange={changeHandler}
                                 value={"Büyük"}
                                 data-cy="crust-large"
                             />
@@ -219,23 +219,25 @@ const Order = ({ updateOrder }) => {
                             </DropdownToggle>
                             <DropdownMenu className="crust" light>
                                 <DropdownItem
+                                    for="crust"
                                     className="crust-normal"
                                     type="select"
                                     id="crust"
                                     name="crust"
                                     value="Normal"
-                                    onClick={changeHand}
+                                    onClick={changeHandler}
                                     invalid={errors.crust}
                                     data-cy="crust-normal"
                                 >
                                     Normal
                                 </DropdownItem>
                                 <DropdownItem
+                                    for="crust"
                                     type="select"
                                     id="crust"
                                     name="crust"
                                     value="İnce"
-                                    onClick={changeHand}
+                                    onClick={changeHandler}
                                     invalid={errors.crust}
                                     data-cy="crust-ince"
                                 >
@@ -259,7 +261,7 @@ const Order = ({ updateOrder }) => {
                                 type="checkbox"
                                 name={e}
                                 id={`custom-checkbox-${e.i}`}
-                                onChange={changeHand}
+                                onChange={changeHandler}
                                 checked={order.extraStuff.indexOf(e) > -1}
                             />
                             {' '}
@@ -282,7 +284,7 @@ const Order = ({ updateOrder }) => {
                             id="note"
                             name="note"
                             type="text"
-                            onChange={changeHand}
+                            onChange={changeHandler}
                             value={order.note}
                             invalid={errors.note}
                             placeholder="Siparişine eklemek istediğin bir not var mı?"

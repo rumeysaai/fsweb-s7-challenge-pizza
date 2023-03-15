@@ -1,49 +1,63 @@
-.main-containerr {
-    text-align: center;
-    font-size: 1rem;
-    background-color: #CE2829;
-    color:#FAF7F2;
-    align-items: center;
-    position:relative;
+.home-container{
     display: flex;
     flex-direction: column;
 }
-.text span{
+.home-container-main {
+    text-align: center;
+    font-size: 1rem;
+    background-color: #CE2829;
+    color:hsl(38, 44%, 96%);
+    width: 100vw;
+    min-height: 80vh;
+    background-image: url("../mvp-banner.png");
+    background-position: bottom center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.home-container-main .text span{
     font-family: "Satisfy";
     font-size: 1.5rem;
     color: #FDC913;
 }
-.text{
+.home-container-main .text{
     font-family: "Barlow";
     font-size: 3rem;
-    position: absolute;
-    margin: auto;
-    display:inline-block;
 }
-.img{
-    position:absolute;
-    display:flex;
-}
-.nav-bar{
-    font-size: 1.25rem;
-    position:relative;
-    top:59rem;
+.nav-bar, .second-nav-bar{
+    font-size: 1rem;
     color:#FAF7F2;
-    justify-content: space-around;
-    width: 90%;
-    height: 5vh;
     display: flex;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+    font-weight: bold;
 }
-.nav-bar a {
+.nav-bar>a:hover{
+    color:#CE2829;
+}
+.nav-bar>a, .second-nav-bar>a{
     text-decoration: none;
     color: #292929;
+    width: 10rem;
 }
-.banners{
+.second-nav-bar>a:hover{
+    color:#FAF7F2;
+    background-color: #292929;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 30px;
+}
+.home-container-second{
+    background-color: #FAF7F2;
+}
+.first-banners{
     width: 100%;
     height: 50vh;
-    background-color: #FAF7F2;
-    position:relative;
-    top:60rem;
 }
 .banner{
     width: 30%;
@@ -52,6 +66,6 @@
 }
 .c1{
     background-color: #CE2829;
-    position:relative;
     top: 5rem;
 }
+ 

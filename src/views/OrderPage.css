@@ -9,19 +9,18 @@
 }
 .nav-menu {
     display:flex;
-    align-content: space-around;
-    text-align: center;
-    margin:0 0 0 22rem;
+    justify-content: center;
+    text-align: left;
  }
  .nav-menu > a{
     text-decoration: none;
     color: #5F5F5F;
-    padding: 2rem 2rem;
+    padding: 2.5rem 2rem;
  }
  .nav-menu > a:last-child{
    text-decoration: none;
    color: #CE2829;
-   padding: 2rem 2rem;
+   padding: 2.5rem 2rem;
 }
  .nav-menu > a:hover{
     text-decoration: none;
@@ -34,6 +33,7 @@
     align-content: center;
     height: 49vh;
     position: relative;
+    width:100vw;
  }
  .head-img{
     margin: 0 auto;
