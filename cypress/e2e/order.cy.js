@@ -19,12 +19,14 @@ describe('home page test', () => {
     });
 
     it('Pizza boyutu seçiliyor mu?', ()=>{
-        cy.get('[type="radio"]').first().check()
+        cy.get('[data-cy="size-medium"]').check()
     })
 
-    it('Pizza hamuru seçiliyor mu?',()=>{
-        cy.get('.crust .crust-normal').click()
-    })
+    it('Test dough-dropdown', () => {
+        cy
+        .get('[data-cy="crust-normal"]')
+        .should('have.value', 'Normal')
+        })
 
     it('Ekstra malzemelerden en fazla 10 adet seçiliyor mu?', ()=>{
       cy.get('[type="checkbox"]').check();
@@ -42,7 +44,7 @@ describe('home page test', () => {
     it('Form öğeleri dolunca buton aktif oluyor mu?', ()=>{
 
       cy.get('[type="radio"]').first().check();
-      cy.get('.crust .crust-normal').click();
+      cy.get('.crust>.crust-normal').click();
       cy.get('[type="checkbox"]').check();
       cy.get('[type="text"]').type("123");
       cy.get('[data-cy="formSubmit"]').submit();

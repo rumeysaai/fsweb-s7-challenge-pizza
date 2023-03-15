@@ -7,7 +7,7 @@
     font-size: 1rem;
     background-color: #CE2829;
     color:hsl(38, 44%, 96%);
-    width: 100vw;
+    width: 98.5vw;
     min-height: 80vh;
     background-image: url("/mvp-banner.png");
     background-position: bottom center;
@@ -21,7 +21,7 @@
 .home-container-main .text span, .second-header>span{
     font-family: "Satisfy";
     font-size: 1.5rem;
-    color: #FDC913;
+    color:#CE2829;
 }
 .home-container-main .text{
     font-family: "Barlow";
@@ -41,7 +41,9 @@
 .nav-bar>a, .second-nav-bar>a{
     text-decoration: none;
     color: #292929;
+    background-color: #fff;
     width: 10rem;
+    border-radius: 30px;
 }
 .second-nav-bar>a:hover{
     color:#FAF7F2;
@@ -54,6 +56,7 @@
 }
 .home-container-second{
     background-color: #FAF7F2;
+    padding-bottom: 5rem;
 }
 .first-banners{
     width: 80%;
@@ -65,6 +68,25 @@
 }
 .banner{
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 0 3rem 2rem;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+.banner h5{
+    width:9rem;
+}
+.banner a{
+    border-radius: 30px;
+    text-decoration: none;
+    color:#CE2829;
+    width:7rem;
+    background-color: #FAF7F2;
+    text-align: center;
+}
+.half-banner1 h2, .half-banner1 h5{
+    height: .1rem;
 }
 .half-banner1, .half-banner2{
     display: flex;
@@ -79,6 +101,7 @@
     background-image: url("/esnek/kart-1.png");
     background-size: cover;
     width: 35vw;
+    color:#FAF7F2;
 }
 .c2{
     background-color:#292929;
@@ -97,9 +120,65 @@
     margin: 1rem 0 0 0;
 }
 .second-header {
-    margin: 2rem 0 2rem 0;
+    margin: 2rem 0 1rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
- 
+.redd{
+    color:#CE2829;
+}
+.food-cards{
+    display: flex;
+    justify-content: space-evenly;
+}
+.card1, .card2, .card3{
+    background-color:#fff;
+    width: 25vw;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction:column;
+    border-radius: 7px;
+    padding: 0 1rem;
+}
+.card1>img, .card2>img, .card3>img{
+    align-self: center;
+}
+.card-details{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: .8rem;
+}
+footer{
+    display: flex;
+    flex-direction: row;
+    background-color: #1d1c1c;
+    color:#FAF7F2;
+    padding: 2rem 7rem;
+    justify-content: space-between;
+}
+.menu-info{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+}
+.insta-info{
+    display:flex;
+    width: 25%;
+    flex-direction: column;
+}
+.insta-img{
+    flex-wrap: wrap;
+    justify-content:center ;
+}
+.insta-img img{
+    padding: .5rem;
+}
+.footer-menus h4, .insta-info h4{
+    color:#FAF7F2;
+    padding-bottom: 1.5rem;
+}
+.contact-info{
+    width:31%;
+}

@@ -15,7 +15,7 @@ const ingredients = [
     "Kabak"
 ]
 
-const foods = [
+export const foods = [
     {
         id: 1,
         name: "Pesto Pizza",
@@ -26,7 +26,7 @@ const foods = [
         note:"",
         count:"",
         rate: 8.9,
-        comments: 256,
+        comments: "(256)",
         description:"Pizza margherita, as the Italians call it, is a simple pizza hailing from Naples. When done right, margherita pizza features a bubbly crust, crushed San Marzano tomato sauce, fresh mozzarella and basil, a drizzle of olive oil, and a sprinkle of salt. "
     },
     {
@@ -39,7 +39,7 @@ const foods = [
         note:"",
         count:"",
         rate: 7.9,
-        comments: 300,
+        comments: "(300)",
         description:""
     },
     {
@@ -52,7 +52,7 @@ const foods = [
         note:"",
         count:"",
         rate: 8.3,
-        comments: 129,
+        comments: "(129)",
         description:""
     }
 ]

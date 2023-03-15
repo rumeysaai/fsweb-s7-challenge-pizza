@@ -183,7 +183,7 @@ const Order = ({ updateOrder }) => {
                                 type="radio"
                                 onChange={changeHandler}
                                 value={"Orta"}
-                                data-cy="crust-medium"
+                                data-cy="size-medium"
                             />
                             {' '}
                             <Label check
@@ -210,14 +210,15 @@ const Order = ({ updateOrder }) => {
                     <div className="part2">
                         <h4>Hamur Seç</h4>
                         <FormFeedback>{errors.crust}</FormFeedback>
-                        <UncontrolledDropdown>
+                        <UncontrolledDropdown className="crust">
                             <DropdownToggle
                                 caret
                                 color="light"
+                                data-cy="crust"
                             >
                                 Hamur Kalınlığı
                             </DropdownToggle>
-                            <DropdownMenu className="crust" light>
+                            <DropdownMenu aria-hidden="false" className="crust-normal" light>
                                 <DropdownItem
                                     for="crust"
                                     className="crust-normal"
