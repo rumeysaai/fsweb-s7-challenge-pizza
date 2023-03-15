@@ -65,11 +65,39 @@ const Order = ({ updateOrder }) => {
         extraPrice: "",
         description: "Pizza margherita, as the Italians call it, is a simple pizza hailing from Naples. When done right, margherita pizza features a bubbly crust, crushed San Marzano tomato sauce, fresh mozzarella and basil, a drizzle of olive oil, and a sprinkle of salt. "
     });
+    const [extraPrice, setExtraPrice] = useState(0);
+    const [totalPrice, setTotalPrice] = useState(order.price); 
+    const [orderCounter, setOrderCounter] = useState(1);  //pizza adet
 
+    const changeHand = (e) =>{
+        const {type, checked, value, name} = e.target
+        if(type === "checkbox")
+        {
+            Yup.reach(orderSchema, "extraStuff")
+            .validate([...order.extraStuff, name])
+            .then((valid) => {
+                setErrors({ ...errors, [name]: "" })
+                if (checked) {
+                    console.log(" ******* yakaladı")
+                    setOrder({ ...order, extraStuff: [...order.extraStuff, name] })
+                }
+            })
+            .catch(err => {
+                console.log(" ***** extraStuff ERR: > ", err)
+                setErrors({ ...errors, extraStuff: err.errors[0] })
+            });
 
-    const changeHandler = (e) => {
-        const { name, value } = e.target
-        Yup.reach(orderSchema, name)
+        if (!checked) {
+
+            const ind = order.extraStuff.indexOf(name)
+            const extraStuf = order.extraStuff;
+            extraStuf.splice(ind, 1)
+
+            setOrder({ ...order, extraStuff: extraStuf })
+        }
+        }
+        else{
+            Yup.reach(orderSchema, name)
             .validate(value)
             .then((valid) => {
                 setErrors({ ...errors, [name]: "" });
@@ -78,41 +106,10 @@ const Order = ({ updateOrder }) => {
             .catch((err) => {
                 setErrors({ ...errors, [name]: err.errors[0] })
             })
-    }
-
-    const [extraPrice, setExtraPrice] = useState(0);
-    const [totalPrice, setTotalPrice] = useState(order.price);
-    const [orderCounter, setOrderCounter] = useState(1);  //pizza adet
-
-    const checkChangeHandler = (e) => {
-
-        const checke = e.target.checked;
-
-        Yup.reach(orderSchema, "extraStuff")
-            .validate([...order.extraStuff, e.target.name])
-            .then((valid) => {
-                setErrors({ ...errors, [e.target.name]: "" })
-                if (checke) {
-                    console.log(" ******* yakaladı")
-                    setOrder({ ...order, extraStuff: [...order.extraStuff, e.target.name] })
-                }
-            })
-            .catch(err => {
-                console.log(" ***** extraStuff ERR: > ", err)
-                setErrors({ ...errors, extraStuff: err.errors[0] })
-            });
-
-        if (!checke) {
-
-            const ind = order.extraStuff.indexOf(e.target.name)
-            const extraStuf = order.extraStuff;
-            extraStuf.splice(ind, 1)
-
-            setOrder({ ...order, extraStuff: extraStuf })
         }
     }
 
-    const increaseCounter = (e) => {
+    const increaseCounter = (e) => { // pizza adet artışı
         console.log(e.target.value)
         setOrderCounter(orderCounter + 1)
 
@@ -123,7 +120,6 @@ const Order = ({ updateOrder }) => {
         if (orderCounter <= 0)
             setOrderCounter(0)
     }
-
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -169,7 +165,7 @@ const Order = ({ updateOrder }) => {
                                 name="size"
                                 id="size-small"
                                 type="radio"
-                                onChange={changeHandler}
+                                onChange={changeHand}
                                 value={"Küçük"}
                                 data-cy="crust-small"
                             />
@@ -185,7 +181,7 @@ const Order = ({ updateOrder }) => {
                                 name="size"
                                 id="size-medium"
                                 type="radio"
-                                onChange={changeHandler}
+                                onChange={changeHand}
                                 value={"Orta"}
                                 data-cy="crust-medium"
                             />
@@ -200,7 +196,7 @@ const Order = ({ updateOrder }) => {
                                 name="size"
                                 id="size-large"
                                 type="radio"
-                                onChange={changeHandler}
+                                onChange={changeHand}
                                 value={"Büyük"}
                                 data-cy="crust-large"
                             />
@@ -228,7 +224,7 @@ const Order = ({ updateOrder }) => {
                                     id="crust"
                                     name="crust"
                                     value="Normal"
-                                    onClick={changeHandler}
+                                    onClick={changeHand}
                                     invalid={errors.crust}
                                     data-cy="crust-normal"
                                 >
@@ -239,7 +235,7 @@ const Order = ({ updateOrder }) => {
                                     id="crust"
                                     name="crust"
                                     value="İnce"
-                                    onClick={changeHandler}
+                                    onClick={changeHand}
                                     invalid={errors.crust}
                                     data-cy="crust-ince"
                                 >
@@ -263,7 +259,7 @@ const Order = ({ updateOrder }) => {
                                 type="checkbox"
                                 name={e}
                                 id={`custom-checkbox-${e.i}`}
-                                onChange={checkChangeHandler}
+                                onChange={changeHand}
                                 checked={order.extraStuff.indexOf(e) > -1}
                             />
                             {' '}
@@ -286,7 +282,7 @@ const Order = ({ updateOrder }) => {
                             id="note"
                             name="note"
                             type="text"
-                            onChange={changeHandler}
+                            onChange={changeHand}
                             value={order.note}
                             invalid={errors.note}
                             placeholder="Siparişine eklemek istediğin bir not var mı?"
