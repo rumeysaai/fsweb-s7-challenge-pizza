@@ -1,5 +1,6 @@
 .main-cont{
     background-color: #CE2829;
+    height: 100vh;
 }
 .texts span{
     font-family: "Satisfy";
@@ -12,6 +13,9 @@
     margin: 0 auto;
     text-align: center;
     color:#FAF7F2;
+}
+.head h2{
+    padding-top: 2rem;
 }
 hr{
     color:#FAF7F2;
@@ -27,9 +31,10 @@ hr{
     height: 69vh;
     padding-top: 5rem;
 }
-.headerr{
+.order-content h4{
     text-align: center;
     margin: 2rem auto 3rem auto;
+    display:block;
 }
 .secim-summarys, .total-summarys{
     display: flex;
@@ -42,6 +47,7 @@ hr{
     flex-direction: row;
     justify-content: space-between;
     padding-top:7rem;
+    width: 30%;
 }
 .total-summarys{
     padding-bottom: 1rem;
@@ -54,4 +60,7 @@ hr{
     background-color: #CE2829;
     color:#FAF7F2;
     margin-bottom: 0;
+  }
+  .order-content{
+    width: 30%;
   }

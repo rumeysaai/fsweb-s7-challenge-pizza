@@ -3,6 +3,16 @@ h3, h4 {
 }
 .food-info{
     color: #292929;
+    position: absolute;
+    top: 25rem;
+    width:40%;
+}
+.food-info h3{
+    margin-bottom: 2.5rem;
+}
+.reverse-rows b {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
 }
 .part1, .part2, .part3{
     color:#5F5F5F;

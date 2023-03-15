@@ -10,13 +10,19 @@
 .nav-menu {
     display:flex;
     align-content: space-around;
-    float: left;
+    text-align: center;
+    margin:0 0 0 22rem;
  }
  .nav-menu > a{
     text-decoration: none;
     color: #5F5F5F;
-    padding: 1rem 2rem;
+    padding: 2rem 2rem;
  }
+ .nav-menu > a:last-child{
+   text-decoration: none;
+   color: #CE2829;
+   padding: 2rem 2rem;
+}
  .nav-menu > a:hover{
     text-decoration: none;
     color: #CE2829;
@@ -26,8 +32,10 @@
     flex-direction: column;
     background-color: #FAF7F2;
     align-content: center;
+    height: 49vh;
+    position: relative;
  }
- .nav-menu, .head-img{
+ .head-img{
     margin: 0 auto;
  }
  .head{
@@ -38,5 +46,6 @@
    background-color: #CE2829;
    color:#FAF7F2;
    margin-bottom: 0;
+   width:100%;
  }
  

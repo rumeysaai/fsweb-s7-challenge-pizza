@@ -61,8 +61,8 @@ const Order = ({ updateOrder }) => {
         count: 1,
         rate: 8.9,
         comments: 256,
-        totalPrice:"",
-        extraPrice:"",
+        totalPrice: "",
+        extraPrice: "",
         description: "Pizza margherita, as the Italians call it, is a simple pizza hailing from Naples. When done right, margherita pizza features a bubbly crust, crushed San Marzano tomato sauce, fresh mozzarella and basil, a drizzle of olive oil, and a sprinkle of salt. "
     });
 
@@ -99,7 +99,7 @@ const Order = ({ updateOrder }) => {
             })
             .catch(err => {
                 console.log(" ***** extraStuff ERR: > ", err)
-                setErrors({ ...errors, [e.target.name]: err.errors[0] })
+                setErrors({ ...errors, extraStuff: err.errors[0] })
             });
 
         if (!checke) {
@@ -108,7 +108,7 @@ const Order = ({ updateOrder }) => {
             const extraStuf = order.extraStuff;
             extraStuf.splice(ind, 1)
 
-            setOrder({...order, extraStuff: extraStuf})
+            setOrder({ ...order, extraStuff: extraStuf })
         }
     }
 
@@ -174,7 +174,9 @@ const Order = ({ updateOrder }) => {
                                 data-cy="crust-small"
                             />
                             {' '}
-                            <Label check>
+                            <Label
+                                for="size-small"
+                                check>
                                 Küçük
                             </Label>
                         </FormGroup>
@@ -188,7 +190,8 @@ const Order = ({ updateOrder }) => {
                                 data-cy="crust-medium"
                             />
                             {' '}
-                            <Label check>
+                            <Label check
+                                for="size-medium">
                                 Orta
                             </Label>
                         </FormGroup>
@@ -202,7 +205,8 @@ const Order = ({ updateOrder }) => {
                                 data-cy="crust-large"
                             />
                             {' '}
-                            <Label check>
+                            <Label check
+                                for="size-large">
                                 Büyük
                             </Label>
                         </FormGroup>
@@ -217,9 +221,9 @@ const Order = ({ updateOrder }) => {
                             >
                                 Hamur Kalınlığı
                             </DropdownToggle>
-                            <DropdownMenu className="crust"light>
+                            <DropdownMenu className="crust" light>
                                 <DropdownItem
-                                className="crust-normal"
+                                    className="crust-normal"
                                     type="select"
                                     id="crust"
                                     name="crust"
@@ -248,7 +252,7 @@ const Order = ({ updateOrder }) => {
                 <div className="part3">
                     <h4>Ek Malzemeler</h4>
                     <p>En fazla 10 malzeme seçebilirsiniz. 5₺</p>
-                    <FormFeedback>{errors.extraStuff}</FormFeedback>
+
                     {extras.map((e, i) => {
                         return (<FormGroup
                             check
@@ -261,16 +265,17 @@ const Order = ({ updateOrder }) => {
                                 id={`custom-checkbox-${e.i}`}
                                 onChange={checkChangeHandler}
                                 checked={order.extraStuff.indexOf(e) > -1}
-                                
                             />
                             {' '}
-                            <Label check>
+                            <Label check
+                            >
                                 {e}
                             </Label>
                         </FormGroup>
                         )
                     })}
-
+                    {/* <FormFeedback>{errors.extraStuff}</FormFeedback> */}
+                    {errors.extraStuff && <span className="text-danger"><br></br>{errors.extraStuff}</span>}
                 </div>
                 <div className="note">
                     <FormGroup>
@@ -318,11 +323,11 @@ const Order = ({ updateOrder }) => {
                             </CardTitle>
                             <CardText className="secim-summary">
                                 <h6 >Seçimler</h6>
-                                <h6>{order.extraPrice=extraPrice} ₺</h6>
+                                <h6>{order.extraPrice = extraPrice} ₺</h6>
                             </CardText>
                             <CardText className="total-summary">
                                 <h6>Toplam</h6>
-                                <h6>{order.totalPrice=totalPrice} ₺</h6>
+                                <h6>{order.totalPrice = totalPrice} ₺</h6>
                             </CardText>
                             <Button disabled={disabledButton} type="submit" color="warning" >
                                 SİPARİŞ VER
