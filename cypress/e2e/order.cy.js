@@ -33,7 +33,7 @@ describe('home page test', () => {
     })
 
     it('Not ekleniyor mu?', () => {
-      cy.get('[type="text"]').type("123")
+      cy.get('[type="text"]').type("Plastik servis istemiyorum")
     })
   })
 
@@ -43,10 +43,11 @@ describe('home page test', () => {
     });
     it('Form öğeleri dolunca buton aktif oluyor mu?', ()=>{
 
-      cy.get('[type="radio"]').first().check();
-      cy.get('.crust>.crust-normal').click();
+      cy.get('[data-cy="size-medium"]').first().check();
+      cy.get('[data-cy="crust"]').click();
+      cy.get('[data-cy="crust-normal"]').click();
       cy.get('[type="checkbox"]').check();
-      cy.get('[type="text"]').type("123");
+      cy.get('[type="text"]').type("Plastik servis istemiyorum");
       cy.get('[data-cy="formSubmit"]').submit();
     })
   })

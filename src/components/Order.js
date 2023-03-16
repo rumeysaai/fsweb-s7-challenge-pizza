@@ -125,7 +125,8 @@ const Order = ({ updateOrder }) => {
                     <p className="acikgri">{order.description}</p>
                 </div>
             </div>
-            <Form onSubmit={submitHandler}>
+            <Form onSubmit={submitHandler}
+            data-cy="formSubmit">
                 <div className="preferences">
                     <div className="part1">
                         <h4>Boyut Seç</h4>
