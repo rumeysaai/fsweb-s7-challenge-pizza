@@ -8,7 +8,7 @@
     background-color: #CE2829;
     color:hsl(38, 44%, 96%);
     width: 98.5vw;
-    min-height: 80vh;
+    min-height: 58vw;
     background-image: url("/mvp-banner.png");
     background-position: bottom center;
     background-size: contain;
@@ -18,7 +18,12 @@
     justify-content: space-between;
 }
 
-.home-container-main .text span, .second-header>span{
+.home-container-main .text span{
+    font-family: "Satisfy";
+    font-size: 1.5rem;
+    color:#FDC913;
+}
+.second-header>span{
     font-family: "Satisfy";
     font-size: 1.5rem;
     color:#CE2829;

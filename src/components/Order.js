@@ -93,13 +93,20 @@ const Order = ({ updateOrder }) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        navigate("/confirmation");
-        updateOrder(order);
-        axios.post("https://reqres.in/api/orders", order)
-            .then((res) => {
-                console.log("reqres aşağıdaki");
-                console.log(res.data);
-            })
+        orderSchema.isValid(order)
+            .then((valid) => {
+                setDisabledButton(!valid)
+                navigate("/confirmation");
+                //buton disabled kontrol edilmeli
+
+                updateOrder(order);
+                axios.post("https://reqres.in/api/orders", order)
+                    .then((res) => {
+                        console.log("reqres aşağıdaki");
+                        console.log(res.data);
+                    })
+            });
+
     }
 
     useEffect(() => {
@@ -117,16 +124,18 @@ const Order = ({ updateOrder }) => {
             <div className="absolut">
                 <div className="food-info">
                     <h3>{order.name}</h3>
-                    <div className="reverse-rows">
+                    <div className="info-details">
                         <b >{order.price}₺</b>
-                        <p className="acikgri">{order.rate}</p>
-                        <p className="acikgri">({order.comments})</p>
+                        <div className="comments-rate">
+                            <p className="acikgri">{order.rate}</p>
+                            <p className="acikgri">({order.comments})</p>
+                        </div>
                     </div>
                     <p className="acikgri">{order.description}</p>
                 </div>
             </div>
             <Form onSubmit={submitHandler}
-            data-cy="formSubmit">
+                data-cy="formSubmit">
                 <div className="preferences">
                     <div className="part1">
                         <h4>Boyut Seç</h4>
@@ -222,28 +231,33 @@ const Order = ({ updateOrder }) => {
                 <div className="part3">
                     <h4>Ek Malzemeler</h4>
                     <p>En fazla 10 malzeme seçebilirsiniz. 5₺</p>
-
-                    {extras.map((e, i) => {
-                        return (<FormGroup
-                            check
-                            key={i}
-                            inline
-                        >
-                            <Input
-                                type="checkbox"
-                                name={e}
-                                id={`custom-checkbox-${e.i}`}
-                                onChange={changeHandler}
-                                checked={order.extraStuff.indexOf(e) > -1}
-                            />
-                            {' '}
-                            <Label check
+                    <div className="additionals">
+                        {extras.map((e, i) => {
+                            return (<FormGroup
+                                check
+                                key={i}
+                                inline
                             >
-                                {e}
-                            </Label>
-                        </FormGroup>
-                        )
-                    })}
+                                <div className="items">
+                                    <Input
+
+                                        type="checkbox"
+                                        name={e}
+                                        id={`custom-checkbox-${e.i}`}
+                                        onChange={changeHandler}
+                                        checked={order.extraStuff.indexOf(e) > -1}
+                                    />
+                                    {' '}
+                                    <Label check
+                                    >
+                                        {e}
+                                    </Label>
+                                </div>
+
+                            </FormGroup>
+                            )
+                        })}
+                    </div>
                     {/* <FormFeedback>{errors.extraStuff}</FormFeedback> */}
                     {errors.extraStuff && <span className="text-danger"><br></br>{errors.extraStuff}</span>}
                 </div>
